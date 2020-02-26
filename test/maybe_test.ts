@@ -1,7 +1,7 @@
 
-import { assertEquals } from "https://deno.land/std@v0.33.0/testing/asserts.ts"
+import { assertEquals, assert, fail } from "https://deno.land/std@v0.33.0/testing/asserts.ts"
 
-import maybe, { mapMaybe } from '../lib/maybe.ts';
+import maybe from '../lib/maybe.ts';
 
 Deno.test({
     name: 'maybe',
@@ -26,18 +26,14 @@ Deno.test({
         assertEquals(JSON.stringify({hello: maybe()}), '{}');
         assertEquals(maybe(0).toString(), '0');
         assertEquals(maybe().toString(), '');
+        let ok = false;
+        for (const value of maybe(1)) {
+            assertEquals(value, 1);
+            ok = true;
+        }
+        assert(ok, 'Iterator works');
+        for (const value of maybe()) {
+            fail('Iterator should be empty');
+        }
     }
 });
-
-Deno.test({
-    name: 'mapMaybe',
-    fn() {
-        assertEquals(mapMaybe((x) => {
-            if (x > 1) {
-                return maybe(x + 1);
-            } else {
-                return maybe();
-            }
-        }, [0, 1, 3, -1, 20]), [4, 21]);
-    }
-})

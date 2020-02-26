@@ -4,14 +4,14 @@
  * @param object object to be copied
  * @returns an object without specified keys
  */
-export default function omit(keys: string[], object: object): object {
-    let target = {};
+export default function omit<T extends object, K extends keyof T>(keys: K[], object: T): object {
+    let target: any = {};
 
-    for (let i in object) {
-        if (keys.indexOf(i) >= 0) continue;
-        if (!Object.prototype.hasOwnProperty.call(object, i)) continue;
+    for (const key of Object.keys(object)) {
+        if (keys.includes(key as K)) continue;
+        if (!Object.prototype.hasOwnProperty.call(object, key)) continue;
 
-        target[i] = object[i];
+        target[key] = object[key];
     }
 
     return target;

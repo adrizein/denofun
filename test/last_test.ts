@@ -5,8 +5,8 @@ import last from '../lib/last.ts';
 Deno.test({
     name: "last",
     fn(): void {
-        assertEquals(last(["a", "b", "c"]), "c");
-        assertEquals(last("hello world"), "d");
-        assertEquals(last([1, "test", { make: "Toyota" }]), { make: "Toyota" });
+        assertEquals(last(["a", "b", "c"]).get(), "c");
+        assertEquals(last("hello world").get(), "d");
+        assertEquals(last([1, "test", { make: "Toyota" }]).get(), { make: "Toyota" });
     }
 })

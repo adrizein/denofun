@@ -19,7 +19,7 @@ const cars = [
 Deno.test({
     name: "find",
     fn(): void {
-        assertEquals(find(findToyota, cars), { make: "Toyota", model: "Mirai" });
-        assertEquals(find(findToyota, []), undefined);
+        assertEquals(find(findToyota, cars).get(), { make: "Toyota", model: "Mirai" });
+        assertEquals(find(findToyota, []).get(), undefined);
     }
 });

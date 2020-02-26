@@ -5,10 +5,10 @@ import head from '../lib/head.ts';
 Deno.test({
     name: "head",
     fn(): void {
-        assertEquals(head([]), undefined);
-        assertEquals(head(['a', 'b', 'c']), 'a');
-        assertEquals(head([1, 'a', 'c']), 1)
-        assertEquals(head('hello'), 'h')
-        assertEquals(head([[], 'w']), [])
+        assertEquals(head([]).get(), undefined);
+        assertEquals(head(['a', 'b', 'c']).get(), 'a');
+        assertEquals(head([1, 'a', 'c']).get(), 1)
+        assertEquals(head('hello').get(), 'h')
+        assertEquals(head([[], 'w']).get(), [])
     }
 })

@@ -78,7 +78,6 @@ function just<T>(value: T): Maybe<T> {
             return this.flatMap(f);
         },
         toJSON() {
-            console.log('toJSON', value);
             return value;
         },
         toString() {
@@ -97,15 +96,4 @@ export default function maybe<T>(t?: T): Maybe<T> {
     } else {
         return just(t);
     }
-}
-
-
-// TODO: create the Filtrable submodule and move mapMaybe in it
-export function mapMaybe<A, B>(f: (a: A) => Maybe<B>, listA: A[]): B[] {
-    const result: B[] = [];
-    for (const a of listA) {
-        f(a).map((b) => result.push(b));
-    }
-
-    return result;
 }
